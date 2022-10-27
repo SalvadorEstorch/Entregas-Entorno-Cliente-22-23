@@ -27,7 +27,7 @@ function validar() {
     return false;
   }
 
-  //validamos que escogan al menos una opción para el tamaño de la pizza.
+  //Validamos que escogan al menos una opción para el tamaño de la pizza.
   var elementos = document.getElementsByName("tamaño");
   var tamañoValido = false;
   for (var i = 0; i < elementos.length; i++) {
