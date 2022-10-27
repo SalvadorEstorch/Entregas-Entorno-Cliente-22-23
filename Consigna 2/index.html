@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Pizzeria</title>
+</head>
+<body>
+
+    <section>
+        <h1>Pizzeria</h1>
+
+        <h3>Realiza tu pedido</h3>
+
+        <form action="">
+
+            <div>
+                <label for="nombre">Nombre: </label>
+                <input type="text" id="nombre">
+            </div>
+
+            <div>
+                <label for="direccion">Dirección: </label>
+                <input type="text" id="direccion">
+            </div>
+
+            <div>
+                <label for="telefono">Teléfono: </label>
+                <input type="text" id="telefono">
+            </div>
+
+            <div>
+                <label for="email">Correo: </label>
+                <input type="email" id="email">
+            </div>
+
+            <div>
+                <p>Tamaño: </p>
+                <input type="radio" name="tamanio" id="chica">
+                <label for="chica">Pequeña</label>
+                
+                <input type="radio" name="tamanio" id="mediana">
+                <label for="mediana">Mediana</label>
+
+                <input type="radio" name="tamanio" id="grande">
+                <label for="grande">Grande</label>
+            </div>
+
+            <div>
+                <p>Ingredientes: </p>
+                <label for="anana">Anana</label>
+                <input type="checkbox" name="" id="anana">
+
+                <label for="huevo">Huevo</label>
+                <input type="checkbox" name="" id="huevo">
+
+                <label for="lechuga">Lechuga</label>
+                <input type="checkbox" name="" id="lechuga">
+
+                <label for="jamon">Jamon serrano</label>
+                <input type="checkbox" name="" id="jamon">
+            </div>
+            
+            <button type="submit" id="btnProcesar">Procesar pedido</button>
+
+        </form>
+    </section>
+
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+div{
+    margin-bottom: 8px;
+}
+label{
+    display: inline-block;
+    min-width: 100px;
+}
