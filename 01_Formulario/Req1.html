@@ -1,0 +1,449 @@
+<!-- 
+Se quiere generar una página web completamente por JavaScript, modificando el árbol DOM. 
+La página web solo tendrá un contenedor (DIV) y sobre dicho contenedor y por medio de JavaScript 
+se añadirán elementos a dicho contenedor. La temática de la web se deja libre al alumno. No es necesario usar CSS. 
+Se valorará usar funciones propias de modificación del árbol DOM y no usar innerHTML.
+Se añadirá al menos los siguientes elementos HTML a un formulario
+
+- Campos de texto donde poner el DNI, el nombre y los apellidos, la dirección y el teléfono.
+- Dos radio button, con 4 opciones a elegir
+- Cinco checkbox diferentes
+- 2 imágenes
+- Un campo select
+- Un text area
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript">
+
+    //Función que devuelve un array de objetos coche
+    function listarCoches(){
+        let coches = [ 
+            { marca   : 'Mercedes',
+              modelo : 'Clase C',
+              año   : 2020 },
+              { marca   : 'Seat',
+              modelo : 'León',
+              año   : 2022 },
+              { marca   : 'Citroën',
+              modelo : 'C3',
+              año   : 2019 },
+              { marca   : 'Volkswagen',
+              modelo : 'Polo',
+              año   : 2018 }
+        ]
+        return coches;    
+    }
+
+    //Creamos nodos de coches creando nodos DOM
+    function crearNodosDOM(){
+        let coches=listarCoches();
+
+        let tabla=document.createElement("table"); //es lo mismo que hacer <table></table>
+
+        //creamos atributos
+        tabla.setAttribute("border",1); //<table align="center" border="1"></table>
+
+        let trCabecera=document.createElement("tr");
+        let th1 = document.createElement("th")//<th></th>
+        let th2 = document.createElement("th")//<th></th>
+        let th3 = document.createElement("th")//<th></th>
+        let txt1=document.createTextNode("Marca")//Marca
+        let txt2=document.createTextNode("Modelo")//Modelo
+        let txt3=document.createTextNode("Año");//Año
+
+        th1.appendChild(txt1)//<th>Marca</th>
+        th2.appendChild(txt2)//<th>Modelo</th>
+        th3.appendChild(txt3)//<th>Año</th>
+        trCabecera.appendChild(th1)//<tr><th>Marca</th></tr>
+        trCabecera.appendChild(th2)//<tr><th>Marca</th><th>Modelo</th></tr>
+        trCabecera.appendChild(th3)//<tr><th>Marca</th><th>Modelo</th><th>Año</th></tr>
+
+        tabla.appendChild(trCabecera) //<table align="center" border="1"><tr><th>Marca</th><th>Modelo</th><th>Año</th></tr></table>
+
+        //ahora vamos con las filas de los coches, por cada coche creo una fila nueva en la tabla
+        for(let coche of coches){
+            let tr = document.createElement("tr")
+            let td1 = document.createElement("td")
+            let td2 = document.createElement("td")
+            let td3 = document.createElement("td")
+            let txt4 = document.createTextNode(coche.marca)
+            let txt5 = document.createTextNode(coche.modelo)
+            let txt6 = document.createTextNode(coche.año)
+            td1.appendChild(txt4)
+            td2.appendChild(txt5)
+            td3.appendChild(txt6)
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+
+            tabla.appendChild(tr)
+
+        }
+        //Añadimos la tabla al div
+        div1.appendChild(tabla)
+    }
+
+    //función para mostrar imágenes
+    function display_image(src, width, height, alt) {
+    let imagen = document.createElement("img");
+    imagen.src = src;
+    imagen.width = width;
+    imagen.height = height;
+    imagen.alt = alt;
+    div1.appendChild(imagen);
+    }
+
+    //Metodo Generación Formulario
+	function GeneraForm(){
+
+		////Crear el objeto formulario
+		let formulario=document.createElement("form")
+ 
+		////Crear el objeto label de titulo
+		let titulo=document.createElement("label")
+ 
+		////Crear el objeto caja de texto Nombres
+		let cajaTextNombres=document.createElement("input")
+ 
+		////Crear el objeto caja de texto Apellidos
+		let cajaTextApellidos=document.createElement("input")
+ 
+		////Crear el objeto caja de texto DNI
+		let cajaTextDNI=document.createElement("input")
+
+
+
+        ////Crear el objeto select Ciudad
+        let titCiu=document.createElement("label")
+		let selectCiudad=document.createElement("select")
+        let bilbao = document.createElement("option")
+        bilbao.setAttribute("value", "bilbao")
+        let bilbaoText = document.createTextNode("Bilbao")
+        bilbao.appendChild(bilbaoText)
+        selectCiudad.appendChild(bilbao)
+        //
+        let barcelona = document.createElement("option")
+        barcelona.setAttribute("value", "barcelona")
+        let barcelonaText = document.createTextNode("Barcelona")
+        barcelona.appendChild(barcelonaText)
+        selectCiudad.appendChild(barcelona)
+        //
+        let madrid = document.createElement("option")
+        madrid.setAttribute("value", "madrid")
+        let madridText = document.createTextNode("Madrid")
+        madrid.appendChild(madridText)
+        selectCiudad.appendChild(madrid)
+
+        ////Crear el objeto ratio button para Genero
+        let titGen=document.createElement("label")
+        let inputFem=document.createElement("input")
+        inputFem.setAttribute('type', "radio")//Asignar el atributo type
+        inputFem.setAttribute('id', "fem")
+        inputFem.setAttribute('value',"femenino")
+
+        let labelFem=document.createElement("label")
+        labelFem.setAttribute('for',"fem")//<label htmlFor="fem"></label>
+        let textoFem=document.createTextNode("Femenino")//Femenino
+        labelFem.appendChild(textoFem)//<label for="fem">Femenino</label>
+        
+        let br2=document.createElement("br")
+
+        let inputMas=document.createElement("input")
+        inputMas.setAttribute('type', "radio")//Asignar el atributo type
+        inputMas.setAttribute('id', "mas")
+        inputMas.setAttribute('value',"masculino")
+
+        let labelMas=document.createElement("label")
+        labelMas.setAttribute('for',"mas")//<label htmlFor="mas"></label>
+        let textoMas=document.createTextNode("Masculino")//Maculino
+        labelMas.appendChild(textoMas)//<label for="fem">Madculino</label>
+        
+        let br3=document.createElement("br")
+
+        let noBinaro=document.createElement("input")
+        noBinaro.setAttribute('type', "radio")//Asignar el atributo type
+        noBinaro.setAttribute('id', "nobi")
+        noBinaro.setAttribute('value',"nobinario")
+
+        let labelnoBinaro=document.createElement("label")
+        labelnoBinaro.setAttribute('for',"nobi")
+        let textnoBinaro=document.createTextNode("No binario")
+        labelnoBinaro.appendChild(textnoBinaro)
+
+        let br4=document.createElement("br")
+
+        let trans=document.createElement("input")
+        trans.setAttribute('type', "radio")//Asignar el atributo type
+        trans.setAttribute('id', "trans")
+        trans.setAttribute('value',"transexual")
+
+        let labeltrans=document.createElement("label")
+        labeltrans.setAttribute('for',"trans")
+        let textTrans=document.createTextNode("Transexual")
+        labeltrans.appendChild(textTrans)
+
+
+		////Crear el objeto caja de texto Telefono del Mensaje
+		let cajaTextTelefono=document.createElement("input")
+
+        ////Crear el objeto caja de texto Direccion del Mensaje
+		let cajaTextDireccion=document.createElement("input")
+
+
+        ////Crear el objeto ratio button para Combustible
+        let titComb=document.createElement("label")
+
+        let gasolina=document.createElement("input")
+        gasolina.setAttribute('type', "radio")//Asignar el atributo type
+        gasolina.setAttribute('id', "gas")
+        gasolina.setAttribute('value',"gasolina")
+
+        let labelGas=document.createElement("label")
+        labelGas.setAttribute('for',"gas")
+        let textGas=document.createTextNode("Gasolina")//Gasolina
+        labelGas.appendChild(textGas)
+
+        let diesel=document.createElement("input")
+        diesel.setAttribute('type', "radio")//Asignar el atributo type
+        diesel.setAttribute('id', "die")
+        diesel.setAttribute('value',"diesel")
+
+        let labelDie=document.createElement("label")
+        labelDie.setAttribute('for',"die")//
+        let textDie=document.createTextNode("Diesel")//diesel
+        labelDie.appendChild(textDie)//
+
+        let electrico=document.createElement("input")
+        electrico.setAttribute('type', "radio")//Asignar el atributo type
+        electrico.setAttribute('id', "elec")
+        electrico.setAttribute('value',"electrico")
+
+        let labelElec=document.createElement("label")
+        labelElec.setAttribute('for',"elec")
+        let textElec=document.createTextNode("Eléctrico")
+        labelElec.appendChild(textElec)
+
+        let hidrogeno=document.createElement("input")
+        hidrogeno.setAttribute('type', "radio")//Asignar el atributo type
+        hidrogeno.setAttribute('id', "hid")
+        hidrogeno.setAttribute('value',"hidrogeno")
+
+        let labelHid=document.createElement("label")
+        labelHid.setAttribute('for',"hid")
+        let textHid=document.createTextNode("Hidrógeno")
+        labelHid.appendChild(textHid)
+        let br5=document.createElement("br")
+
+        ////Crear el objeto ratio button para Combustible
+        let titFav=document.createElement("label")
+
+        let mercedes=document.createElement("input")
+        mercedes.setAttribute('type', "checkbox")//Asignar el atributo type
+        mercedes.setAttribute('id', "mer")
+        mercedes.setAttribute('value',"mercedes")
+        
+        let labelMer=document.createElement("label")
+        labelMer.setAttribute('for',"mer")
+        let textMer=document.createTextNode("Mercedes")
+        labelMer.appendChild(textMer)
+        let br6=document.createElement("br")
+        
+        let seat=document.createElement("input")
+        seat.setAttribute('type', "checkbox")//Asignar el atributo type
+        seat.setAttribute('id', "seat")
+        seat.setAttribute('value',"seat")
+        
+        let labelSeat=document.createElement("label")
+        labelSeat.setAttribute('for',"seat")
+        let textSeat=document.createTextNode("Seat")
+        labelSeat.appendChild(textSeat)
+        let br7=document.createElement("br")
+
+        let bmw=document.createElement("input")
+        bmw.setAttribute('type', "checkbox")//Asignar el atributo type
+        bmw.setAttribute('id', "bmw")
+        bmw.setAttribute('value',"bmw")
+        
+        let labelBmw=document.createElement("label")
+        labelBmw.setAttribute('for',"bmw")
+        let textBmw=document.createTextNode("BMW")
+        labelBmw.appendChild(textBmw)
+        let br8=document.createElement("br")
+
+        let kia=document.createElement("input")
+        kia.setAttribute('type', "checkbox")//Asignar el atributo type
+        kia.setAttribute('id', "kia")
+        kia.setAttribute('value',"kia")
+
+        let labelKia=document.createElement("label")
+        labelKia.setAttribute('for',"kia")
+        let textKia=document.createTextNode("Kia")
+        labelKia.appendChild(textKia)
+        let br9=document.createElement("br")
+
+        let opel=document.createElement("input")
+        opel.setAttribute('type', "checkbox")//Asignar el atributo type
+        opel.setAttribute('id', "opel")
+        opel.setAttribute('value',"opel")
+
+        let labelOpel=document.createElement("label")
+        labelOpel.setAttribute('for',"opel")
+        let textOpel=document.createTextNode("Opel")
+        labelOpel.appendChild(textOpel)
+
+ 
+		////Crear el objeto area de texto del Mensaje
+		let cajaTextMensaje=document.createElement("textarea")
+ 
+		////Crear el objeto boton
+		let boton=document.createElement("input")
+ 
+		////Asignar atributos al objeto formulario
+        formulario.setAttribute('method', "post")//Asignar el atributo method
+        formulario.setAttribute('action', "")//Asignar el atributo action
+        formulario.setAttribute('style', "width:300px;margin: 0px auto")//Asignar el atributo style
+
+        ////Asignar atributos al objeto caja de texto de Nombres
+        cajaTextNombres.setAttribute('type', "text")//Asignar el atributo type
+        cajaTextNombres.setAttribute('placeholder', "Nombres")//Asignar el atributo placeholder
+
+        ////Asignar atributos al objeto caja de texto de Apellidos
+        cajaTextApellidos.setAttribute('type', "text")//Asignar el atributo type
+        cajaTextApellidos.setAttribute('placeholder', "Apellidos")//Asignar el atributo placeholder
+
+        ////Asignar atributos al objeto caja de texto de DNI
+        cajaTextDNI.setAttribute('type', "text")//Asignar el atributo type
+        cajaTextDNI.setAttribute('placeholder', "DNI")//Asignar el atributo placeholder
+
+        ////Asignar atributos al objeto caja de texto de Telefono
+        cajaTextTelefono.setAttribute('type', "number")//Asignar el atributo type
+        cajaTextTelefono.setAttribute('placeholder', "Telefono")//Asignar el atributo placeholder
+
+        ////Asignar atributos al objeto caja de texto de Direccion
+        cajaTextDireccion.setAttribute('type', "text")//Asignar el atributo type
+        cajaTextDireccion.setAttribute('placeholder', "Direccion")//Asignar el atributo placeholder
+
+        ////Asignar atributos al objeto area de texto de Mensaje
+        cajaTextMensaje.setAttribute('placeholder', "Mensaje")//Asignar el atributo placeholder
+        cajaTextMensaje.setAttribute('style', "width:300px;margin: 10px 0px;padding: 10px;border:solid 1px #000;")//Asignar el atributo style
+
+
+        ////Asignar atributos al objeto boton
+        boton.setAttribute('type', "button")//Asignar el atributo type	
+        boton.setAttribute('value', "Enviar")//Asignar el atributo value
+        boton.setAttribute('onclick', "alert('Se envio el mensaje')")//Asignar el metodo onclick
+
+        titulo.innerHTML='<h1>Contacto</h1>'//Asignar el texto de titulo en el objeto titulo
+        formulario.appendChild(titulo)//Agregar el objeto titulo al objeto formulario
+        //let br13=document.createElement("br")
+        //formulario.appendChild(br13)
+        display_image('images/rojo.jpg',276,110,'JavaScriptImage')
+
+        formulario.appendChild(cajaTextNombres)//Agregar el objeto caja de texto Nombres al objeto formulario
+        formulario.appendChild(cajaTextApellidos)//Agregar el objeto caja de texto Apellidos al objeto formulario
+        formulario.appendChild(cajaTextDNI)//Agregar el objeto caja de texto DNI al objeto formulario
+
+        
+        //genero
+        titGen.innerHTML='<p>Seleccione su género: </>'
+        formulario.appendChild(titGen)
+        formulario.appendChild(inputFem)
+        formulario.appendChild(labelFem)
+        formulario.appendChild(br2)
+        formulario.appendChild(inputMas)
+        formulario.appendChild(labelMas)
+        formulario.appendChild(br3)
+        formulario.appendChild(noBinaro)
+        formulario.appendChild(labelnoBinaro)
+        formulario.appendChild(br4)
+        formulario.appendChild(trans)
+        formulario.appendChild(labeltrans)
+        let br10=document.createElement("br")
+        formulario.appendChild(br10)
+        formulario.appendChild(cajaTextTelefono)//Agregar el objeto caja de texto Telefono al objeto formulario
+        formulario.appendChild(cajaTextDireccion)//Agregar el objeto caja de texto Direccion al objeto formulario
+        titCiu.innerHTML='<p>Seleccione ciudad: </>'
+        formulario.appendChild(titCiu)
+        formulario.appendChild(selectCiudad)
+        //combustible
+        titComb.innerHTML='<p>Seleccione tipo de combustible: </>'
+        formulario.appendChild(titComb)
+        formulario.appendChild(labelGas)
+        formulario.appendChild(gasolina)
+
+        formulario.appendChild(labelDie)
+        formulario.appendChild(diesel)
+        formulario.appendChild(br5)
+        formulario.appendChild(labelElec)
+        formulario.appendChild(electrico)
+        
+        formulario.appendChild(labelHid)
+        formulario.appendChild(hidrogeno)
+        //coches favoritos para comprar
+        titFav.innerHTML='<p>Seleccione marcas favoritas: </>'
+        formulario.appendChild(titFav)
+        formulario.appendChild(mercedes)
+        formulario.appendChild(labelMer)
+        formulario.appendChild(br6)
+        formulario.appendChild(seat)
+        formulario.appendChild(labelSeat)
+        formulario.appendChild(br7)
+        formulario.appendChild(bmw)
+        formulario.appendChild(labelBmw)
+        formulario.appendChild(br8)
+        formulario.appendChild(kia)
+        formulario.appendChild(labelKia)
+        formulario.appendChild(br9)
+        formulario.appendChild(opel)
+        formulario.appendChild(labelOpel)
+        
+        let br11=document.createElement("br")
+        formulario.appendChild(br11)
+
+        formulario.appendChild(cajaTextMensaje)//Agregar el objeto area de texto del Mensaje al objeto formulario
+        let br12=document.createElement("br")
+        formulario.appendChild(br12)
+        formulario.appendChild(boton)//Agregar el objeto boton al objeto formulario
+        
+        
+        div1.appendChild(formulario)
+        display_image('images/plateado.jpg',276,110,'JavaScriptImage')		
+	}
+
+    
+
+</script>
+
+<body>
+    <marquee>
+        <h1>
+            <font color=blue>
+                AE-1. DOM y Formularios:Requerimiento 1 <br>
+                Venta de Coches
+            </font>
+        </h1>
+    </marquee>
+
+    <hr/>
+    
+    <div id="div1" align="center">
+        
+        <input type="button" id="btn_crearNodosDOM"    onclick="crearNodosDOM()"      value="Coches disponibles"/> 
+          <br>
+          <br>
+        <input type="button"  id="ContentFormulario" onclick="GeneraForm()" value="Solicitud infotmación"/>       
+
+    </div>
+    <hr/>
+
+</body>
+</html>
