@@ -1,0 +1,17 @@
+{
+  "DATA": {
+    "TAMAÑOS": [
+      { "TAMAÑO": "Grande" },
+      { "TAMAÑO": "Mediano" },
+      { "TAMAÑO": "zzzzzzzzz" },
+      { "TAMAÑO": "aaaaaaaaa" },
+      { "TAMAÑO": "Pequeño" }
+    ],
+    "INGREDIENTES": [
+      { "INGREDIENTE": "Bacon" },
+      { "INGREDIENTE": "Queso" },
+      { "INGREDIENTE": "Piña" },
+      { "INGREDIENTE": "Champiñones" }
+    ]
+  }
+}
