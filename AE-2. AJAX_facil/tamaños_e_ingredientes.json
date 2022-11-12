@@ -1,17 +1,29 @@
 {
   "DATA": {
     "TAMAÑOS": [
-      { "TAMAÑO": "Grande" },
-      { "TAMAÑO": "Mediano" },
-      { "TAMAÑO": "zzzzzzzzz" },
-      { "TAMAÑO": "aaaaaaaaa" },
-      { "TAMAÑO": "Pequeño" }
+      {
+        "TAMAÑO": "pequeña"
+      },
+      {
+        "TAMAÑO": "mediana"
+      },
+      {
+        "TAMAÑO": "grande"
+      }
     ],
     "INGREDIENTES": [
-      { "INGREDIENTE": "Bacon" },
-      { "INGREDIENTE": "Queso" },
-      { "INGREDIENTE": "Piña" },
-      { "INGREDIENTE": "Champiñones" }
+      {
+        "INGREDIENTE": "bacon"
+      },
+      {
+        "INGREDIENTE": "queso"
+      },
+      {
+        "INGREDIENTE": "piña"
+      },
+      {
+        "INGREDIENTE": "champiñones"
+      }
     ]
   }
 }
