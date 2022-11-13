@@ -1,0 +1,6 @@
+{
+    "PIZZAS":{
+        "TAMAÑOS":["Pequeña","Mediana","Grande"],
+        "INGREDIENTES":["Bacon","Queso","Piña","Champiñones"]
+    }
+}
