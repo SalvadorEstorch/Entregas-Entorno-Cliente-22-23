@@ -1,0 +1,36 @@
+{
+  "PRECIOS": {
+    "TAMAÑOS": [
+      {
+        "TAMAÑO": "pequeña",
+        "PRECIO": 5
+      },
+      {
+        "TAMAÑO": "mediana",
+        "PRECIO": 10
+      },
+      {
+        "TAMAÑO": "grande",
+        "PRECIO": 15
+      }
+    ],
+    "INGREDIENTES": [
+      {
+        "INGREDIENTE": "bacon",
+        "PRECIO": 1
+      },
+      {
+        "INGREDIENTE": "queso",
+        "PRECIO": 2
+      },
+      {
+        "INGREDIENTE": "piña",
+        "PRECIO": 3
+      },
+      {
+        "INGREDIENTE": "champiñones",
+        "PRECIO": 4
+      }
+    ]
+  }
+}
