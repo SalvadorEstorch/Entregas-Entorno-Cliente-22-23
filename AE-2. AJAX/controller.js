@@ -28,70 +28,60 @@ function procesarRespuestaCargaDatos(jsonDoc) {
   //Creamos variable contenido y la inicializamos con el h3 de título
   //var contenido = "<h3>Tamaño de la pizza:</h3>";
 
-  //var contenido = "";
-  //Creo el h3 de cabecera
-  let tiTam = document.createElement("h3");
-  let txtTam = document.createTextNode("Tamaño de la pizza:");
-  tiTam.appendChild(txtTam);
-  contenidoTamaño.appendChild(tiTam);
-  //Iteramos el array de TAMAÑOS y formamos input y label para cada valor, vamos añadiendo todo a la variable
-  //contenido con el "contenido +="
+  //Creamos todos los datos usando nodos. No con innerHTML
+  let tiTam = document.createElement("h3"); //<h3></h3>
+  let txtTam = document.createTextNode("Tamaño de la pizza:"); //Tamaño de la pizza:
+  tiTam.appendChild(txtTam); //<h3>Tamaño de la pizza:</h3>
+  contenidoTamaño.appendChild(tiTam); //Lo metemos dentro del div del index
+
+  //Iteramos el array de TAMAÑOS y formamos label e input para cada valor
   for (let tamaño of arrayTamaños) {
-    let label = document.createElement("label");
-    label.setAttribute("for", tamaño.TAMAÑO); //<label htmlFor="peq"></label>
+    //Voy mostrando en comentarios cómo se crearía el html en la primera iteración
+    let label = document.createElement("label"); //<label></label>
+    label.setAttribute("for", tamaño.TAMAÑO); //<label for="pequeña"></label>
     label.appendChild(
       document.createTextNode(
         tamaño.TAMAÑO[0].toUpperCase() + tamaño.TAMAÑO.substring(1)
       )
-    ); //<label for="tam">tam</label>
+    ); //<label for="pequeña">Pequeña</label>
 
-    let input = document.createElement("input");
-    input.setAttribute("type", "radio"); //Asignar el atributo type
-    input.setAttribute("name", "tamaño"); //Asignar el atributo name para que sólo se pueda elegir una opción
-    input.setAttribute("id", tamaño.TAMAÑO);
-    input.setAttribute("value", tamaño.TAMAÑO);
+    let input = document.createElement("input"); //<imput></imput>
+    input.setAttribute("type", "radio"); //<imput type="radio"></imput>
+    //Asignar el atributo name para que sólo se pueda elegir una opción
+    input.setAttribute("name", "tamaño"); //<imput type="radio" name="tamaño"></imput>
+    input.setAttribute("id", tamaño.TAMAÑO); //<imput type="radio" name="tamaño" id="pequeña"></imput>
 
-    contenidoTamaño.appendChild(label);
-    contenidoTamaño.appendChild(input);
+    contenidoTamaño.appendChild(label); //Añadimos el label al div del index
+    contenidoTamaño.appendChild(input); //Añadimos el imput al div del index
   }
-  contenidoTamaño.appendChild(document.createElement("br"));
-  //Insertamos el contenido en el div cuyo id="contenidoTamaño". Usamos innerHTML porque añadimos porque la
-  //variable "contenido" contiene una cadena de HTML
-  //contenidoTamaño.innerHTML = contenido;
 
-  //Accedemos a la parte que necesitamos del JSON, esto lo vamos a usar más abajo en el bucle for
-  var arrayIngredientes = objetoJson.DATA.INGREDIENTES; //Ojo mayusculas y minusculas, es como este en el json original
+  //Hacemos ahora lo mismo con los ingredientes
+  var arrayIngredientes = objetoJson.DATA.INGREDIENTES;
 
-  //Creamos variable contenido y la inicializamos con el h3 de título
-  //var contenido1 = "<h3>Ingredientes:</h3>";
   let titIng = document.createElement("h3");
   let txtI = document.createTextNode("Ingredientes: ");
   titIng.appendChild(txtI);
   contenidoIngredientes.appendChild(titIng);
-  //Iteramos el array de TAMAÑOS y formamos input y label para cada valor, vamos añadiendo todo a la variable
-  //contenido con el "contenido1 +="
+
   for (let ingrediente of arrayIngredientes) {
     let label = document.createElement("label");
-    label.setAttribute("for", ingrediente.INGREDIENTE); //<label htmlFor="peq"></label>
+    label.setAttribute("for", ingrediente.INGREDIENTE);
     label.appendChild(
       document.createTextNode(
         ingrediente.INGREDIENTE[0].toUpperCase() +
           ingrediente.INGREDIENTE.substring(1)
       )
-    ); //<label for="ing">ing</label>
+    );
 
     let input = document.createElement("input");
-    input.setAttribute("type", "checkbox"); //Asignar el atributo type
+    input.setAttribute("type", "checkbox"); //El tipo en lugar de radio es checkbox
     input.setAttribute("id", ingrediente.INGREDIENTE);
-    input.setAttribute("value", ingrediente.INGREDIENTE);
 
     contenidoIngredientes.appendChild(label);
     contenidoIngredientes.appendChild(input);
-    contenidoIngredientes.appendChild(document.createElement("br"));
+    contenidoIngredientes.appendChild(document.createElement("br")); //Con esta linea insertamos <br> para
+    //realizar un salto de linea y conseguir que los ingredintes se situen en columna
   }
-  //Insertamos el contenido en el div cuyo id="contenidoTamaño". Usamos innerHTML porque añadimos porque la
-  //variable "contenido1" contiene una cadena de HTML
-  //contenidoIngredientes.innerHTML = contenido1;
 }
 
 function enviarPeticionCalculaPrecio() {
@@ -118,14 +108,18 @@ function procesarRespuestaCalculaPrecio(jsonDoc) {
   //Accedemos a la parte que necesitamos del JSON, esto lo vamos a usar más abajo en el bucle for
   var arrayPrecioTamaños = objetoJson.PRECIOS.TAMAÑOS; //Ojo mayusculas y minusculas, es como este en el json original
 
+  //Esta variable guarda el valor del tamaño de la pizza
   var precio1 = 0;
 
   for (let tamaño of arrayPrecioTamaños) {
+    //Obtenemos el input usando getElementById y el valor de tamaño.TAMAÑO que en la primera iteración será "pequeña"
+    //Luego comprobamos si es igual a true y si es cierto se añade su precio a la variable precio1
     if (document.getElementById(tamaño.TAMAÑO).checked == true) {
       precio1 += tamaño.PRECIO;
     }
   }
 
+  //Realizamos lo mismo con los ingredientes
   var arrayPrecioIngredintes = objetoJson.PRECIOS.INGREDIENTES;
 
   var precio2 = 0;
@@ -136,25 +130,39 @@ function procesarRespuestaCalculaPrecio(jsonDoc) {
     }
   }
 
+  //El value del imput "total" será precio tamaño + precio ingredientes
   total.value = precio1 + precio2;
 }
 
 function refrescarDatos() {
   console.log("dentro de refrescar");
-  //Vaciamos los div mediante innerHTML, no sabemos si es la mejor
-  contenidoTamaño.innerHTML = "";
-  contenidoIngredientes.innerHTML = "";
+  //Para evitar duplicar los datos hay que vaciar los div antes de nada. Se podría hacer así, con innerHTML:
+  //contenidoTamaño.innerHTML = "";
+  //contenidoIngredientes.innerHTML = "";
+  //Pero es mejor hacerlo de esta manera, con los nodos
+  //firstChild trae el primer hijo que se encuentra en un nodo, de esta manera podemos borrarlos uno a uno
+  while (contenidoTamaño.firstChild) {
+    contenidoTamaño.removeChild(contenidoTamaño.firstChild);
+  }
+  while (contenidoIngredientes.firstChild) {
+    contenidoIngredientes.removeChild(contenidoIngredientes.firstChild);
+  }
   //Volvemos a cargar los datos
   enviarPeticionCargaDatos();
 }
 
 //Es lo primero que se ejecuta
 window.onload = function () {
+  //Cuando se carga toda la página se ejecuta directamente esta función para actualizar la página con
+  //los datos más recintes del JSON
   enviarPeticionCargaDatos();
-  console.log("antes de refrescar");
+
+  //Cuando se hace clic sobre el botón con id "refrescar" se vuelve a refescar los datos
   refrescar.onclick = function () {
     refrescarDatos();
   };
+
+  //Por último esta función se ejecuta cuando se hace clic en el botón con id "procesar"
   procesar.onclick = function () {
     enviarPeticionCalculaPrecio();
   };
