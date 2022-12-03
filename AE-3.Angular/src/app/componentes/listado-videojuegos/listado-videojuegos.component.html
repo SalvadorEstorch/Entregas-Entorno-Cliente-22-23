@@ -1,0 +1,21 @@
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Universo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- 
+            Recorremos la lista, y si pulsamos en alguna fila, ejecutaremos el metodo
+            "seleccionar", pasandole el heroe seleccionado
+        -->
+        <tr *ngFor="let v of listaVideojuegos">
+            <td>{{ v.id }}</td>
+            <td>{{ v.titulo }}</td>
+            <td>{{ v.valoracion }}</td>
+            <button (click)="routingProgramatico(v.id)">Detalle</button>
+        </tr>
+    </tbody>
+</table>
