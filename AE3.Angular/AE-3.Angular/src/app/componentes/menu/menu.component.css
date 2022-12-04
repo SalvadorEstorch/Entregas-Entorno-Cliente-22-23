@@ -1,0 +1,13 @@
+nav li {
+  display: inline-block;
+  width: 10%;
+  padding: 5px 10px;
+  background-color: lightsteelblue;
+  border: 1px solid #000;
+  text-align: center;
+  color: white;
+}
+
+nav li:hover {
+  background-color: rgb(151, 184, 227);
+}

@@ -1,0 +1,42 @@
+.detalles {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px 40px;
+  gap: 40px;
+
+  position: relative;
+  width: 1101px;
+  height: 392px;
+}
+
+img {
+  width: 441px;
+  height: 392px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.datos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+
+  width: 268px;
+  height: 220px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+button {
+  margin-left: 75px;
+}

@@ -1,0 +1,35 @@
+<h2>Login</h2>
+<br />
+<label for="usuario">Usuario</label>
+<input type="text" [(ngModel)]="usuario" id="usuario">
+<br />
+<br />
+<label for="contraseña">Contraseña</label>
+<input type="text" [(ngModel)]="contrasena" id="contraseña">
+<p class="rojo">{{mensaje}}</p>
+<br />
+<button (click)="validarUsuario()">Entrar</button>
+
+<br />
+<br />
+<br />
+<br />
+<h3>Chuleta🤫 ¡Shhhhh!</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Contraseña</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- 
+            Recorremos la lista con la directiva *ngFor para mostrar los usuarios. 
+            Sólo para facilitar la corrección. Esto normalmente no se mostraría
+        -->
+        <tr *ngFor="let u of listaUsuarios">
+            <td>{{ u.usuario }}</td>
+            <td>{{ u.contrasena }}</td>
+        </tr>
+    </tbody>
+</table>

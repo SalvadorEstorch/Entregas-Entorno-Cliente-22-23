@@ -8,28 +8,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./listado-videojuegos.component.css'],
 })
 export class ListadoVideojuegosComponent implements OnInit {
+  //Creamos una lista que contendrá nuestros videojegos y la
+  //inicializamos a vacío
   listaVideojuegos: Videojuego[] = [];
 
+  //En el constructor se crea el objeto Router
+  //Dentro del constructor crearemos los videojuegos y los
+  //meteremos en la lista que creamos antes
   constructor(private router: Router) {
+    //esta variable apuntará al juego que estamos creando
     let videojuego: Videojuego;
+    //Aquí se crea el primer videojuego
     videojuego = new Videojuego(
       1,
       'Minecraft',
       'assets/img/logo-minecraft.png',
-      'Softonic',
+      'Mojang Studios',
       4.5
     );
+    //Y aquí lo añadimos a la lista. ¡MUY IMPORTANTE!
     this.listaVideojuegos.push(videojuego);
     videojuego = new Videojuego(
       8,
-      'Final fantasi',
+      'Fortnite',
       'assets/img/logo-fortnite.png',
-      'compañía',
-      4.5
+      'Epic Games',
+      4.3
     );
     this.listaVideojuegos.push(videojuego);
   }
 
+  //Este método se sirve de un for con if anidado para encontrar el objeto
+  //videojuego que el usuario quiere ver, y devuelve ese mismo objeto
   public buscarVideojuego(id: number): Videojuego {
     let videojuego = new Videojuego(0, 'prueba', 'prueba', 'prueba', 0);
     for (let i = 0; i < this.listaVideojuegos.length; i++) {
@@ -41,6 +51,9 @@ export class ListadoVideojuegosComponent implements OnInit {
     return videojuego;
   }
 
+  //Cómo su propio nombre indica este método hace el routing programático.
+  //Sirviendose del anterior método busca el objeto que quiere el usuario,
+  // y pasa por parámetros PathParam los datos a el componente detalle que los mostrará
   public routingProgramatico(id: number) {
     let vj: Videojuego;
     vj = this.buscarVideojuego(id);

@@ -1,15 +1,17 @@
+<menu></menu>
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Universo</th>
+            <th>Identificador</th>
+            <th>Título</th>
+            <th>Valoracion</th>
         </tr>
     </thead>
     <tbody>
         <!-- 
-            Recorremos la lista, y si pulsamos en alguna fila, ejecutaremos el metodo
-            "seleccionar", pasandole el heroe seleccionado
+            Recorremos la lista, y si hacemos clic en el botón detalle se ejecuta el 
+            método qeu veremos a continuación. A dicho método le pasamos por parametros
+            el id del videojugo que queremos ver más en detalle
         -->
         <tr *ngFor="let v of listaVideojuegos">
             <td>{{ v.id }}</td>
