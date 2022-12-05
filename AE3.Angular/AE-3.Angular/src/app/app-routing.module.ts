@@ -8,10 +8,15 @@ import { SobreNosotrosComponent } from './componentes/sobre-nosotros/sobre-nosot
 
 //Aquí temos que definir todas las posibles rutas que pueda usar nuestra web luego
 //para mostrar en <router-outlet></router-outlet> el componente que corresponda
+//Esta primera que está en '' será la página por defecto
 const routes: Routes = [
   {
     //Esta primera que está en '' será la página por defecto
-    path: '' || 'log-out', //cuando definimos el 'path' no puede empezar por '/'
+    path: '', //cuando definimos el 'path' no puede empezar por '/'
+    component: LoginComponent,
+  },
+  {
+    path: 'log-out',
     component: LoginComponent,
   },
   {
